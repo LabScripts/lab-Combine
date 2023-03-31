@@ -14,9 +14,6 @@ local combhook = ox_inventory:registerHook('swapItems', function(payload)
         local item2 = (Combinations[item1].needs == payload.fromSlot.name and payload.fromSlot.name) or (Combinations[item1].needs == payload.toSlot.name and payload.toSlot.name)
         if not item2 then return end
 
-        if Combinations[payload.fromSlot.name] then
-            item1 = payload.fromSlot.name
-        end
         TriggerClientEvent('ox_inventory:closeInventory', payload.source)
         TriggerClientEvent('lab-Combine:Combine', payload.source)
         Wait(2000)
