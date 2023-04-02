@@ -19,7 +19,7 @@ local Combinations = { --create new item craft Recipies here. limited to 2 items
     
 }
 
-local craftHook = exports.ox_inventory:registerHook('swapItems', function(data)
+local craftHook = ox_inventory:registerHook('swapItems', function(data)
     if type(data.fromSlot) == "table" and type(data.toSlot) == "table" then
 
         if data.fromSlot?.name == data.toSlot?.name then return end
