@@ -1,11 +1,10 @@
-RegisterNetEvent('lab-Combine:Combine')
-AddEventHandler('lab-Combine:Combine', function()
-    lib.progressCircle({
-        duration = 2000,
-        label = 'Combining..',
+RegisterNetEvent('lab-Combine:Combine', function(duration)
+    local result = lib.progressCircle({
+        duration = duration,
+        label = 'Crafting..',
         position = 'middle',
         useWhileDead = false,
-        canCancel = false,
+        canCancel = true,
         disable = {
             car = true,
         },
@@ -14,4 +13,6 @@ AddEventHandler('lab-Combine:Combine', function()
             clip = 'base'
         },
     })
+
+    lib.callback('srp-dragCraft:success', false, function() end, result)
 end)
