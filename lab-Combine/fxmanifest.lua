@@ -4,7 +4,7 @@ lua54 'yes'
 
 author 'Lab Scripts'
 description 'Combine items for ox_inventory'
-version '1.0'
+version '1.1'
 
 dependencies { 'ox_lib', 'ox_inventory'}
 
