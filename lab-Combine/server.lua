@@ -49,7 +49,7 @@ local craftHook = ox_inventory:registerHook('swapItems', function(data)
         end
 
         TriggerClientEvent('ox_inventory:closeInventory', data.source)
-        TriggerClientEvent('lab-Combine:Combine', data.source)
+        TriggerClientEvent('lab-Combine:Combine', data.source, Combinations[item1.name].duration)
 
         CraftQueue[data.source] = {item1 = item1.name, item2 = item2.name, result = Combinations[item1.name].result}
 
