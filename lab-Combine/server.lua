@@ -43,7 +43,7 @@ local craftHook = exports.ox_inventory:registerHook('swapItems', function(data)
             TriggerClientEvent('ox_lib:notify', data.source,
             {
                 type = 'error',
-                description = ("Not enough %s. Need %.0f"):format(item2.label, Recipies[item1.name].amount[item2.name])
+                description = ("Not enough %s. Need %.0f"):format(item2.label, Combinations[item1.name].amount[item2.name])
             })
             return false
         end
@@ -51,7 +51,7 @@ local craftHook = exports.ox_inventory:registerHook('swapItems', function(data)
         TriggerClientEvent('ox_inventory:closeInventory', data.source)
         TriggerClientEvent('lab-Combine:Combine', data.source)
 
-        CraftQueue[data.source] = {item1 = item1.name, item2 = item2.name, result = Recipies[item1.name].result}
+        CraftQueue[data.source] = {item1 = item1.name, item2 = item2.name, result = Combinations[item1.name].result}
 
         return false
     end
