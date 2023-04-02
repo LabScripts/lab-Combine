@@ -4,20 +4,23 @@ local ox_inventory = exports.ox_inventory
 local Combinations = { --create new item craft Recipies here. limited to 2 items per craft, but you can have multiple of each of those 2 items if desired
 
     ['coca'] = { --item1
-	otherItem = 'baggy', --item2
-        amount = {['baggy'] = 1, ['coca'] = 1}, --amount of each item needed to craft. must match item1 and item2
+	    otherItem = 'baggy', --item2
+        amount = {['coca'] = 1, ['baggy'] = 1}, --amount of each item needed to craft. must match item1 and item2
         duration = 2000, --how long the craft takes
         result = 'coke' -- the item you get after craft
     },
-	
+
     ['meth'] = { --item1
-	otherItem = 'baggy', --item2
+	    otherItem = 'baggy', --item2
         amount = {['baggy'] = 1, ['meth'] = 1}, --amount of each item needed to craft. must match item1 and item2
         duration = 2000, --how long the craft takes
         result = 'packagedmeth' -- the item you get after craft
     },
-    
+
 }
+
+---@type table<number, {item1: string, item2: string, result: string}>
+local CraftQueue = {}
 
 local craftHook = ox_inventory:registerHook('swapItems', function(data)
     if type(data.fromSlot) == "table" and type(data.toSlot) == "table" then
@@ -47,8 +50,7 @@ local craftHook = ox_inventory:registerHook('swapItems', function(data)
             })
             return false
         end
-
-        TriggerClientEvent('ox_inventory:closeInventory', data.source)
+        print("craft")
         TriggerClientEvent('lab-Combine:Combine', data.source, Combinations[item1.name].duration)
 
         CraftQueue[data.source] = {item1 = item1.name, item2 = item2.name, result = Combinations[item1.name].result}
