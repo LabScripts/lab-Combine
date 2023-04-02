@@ -1,7 +1,8 @@
 RegisterNetEvent('lab-Combine:Combine', function(duration)
+    TriggerServerEvent('ox_inventory:closeInventory')
     local result = lib.progressCircle({
         duration = duration,
-        label = 'Crafting..',
+        label = 'Combining..',
         position = 'middle',
         useWhileDead = false,
         canCancel = true,
@@ -14,5 +15,6 @@ RegisterNetEvent('lab-Combine:Combine', function(duration)
         },
     })
 
-    lib.callback('srp-dragCraft:success', false, function() end, result)
+    lib.callback('lab-Combine:success', false, function()
+    end, result)
 end)
